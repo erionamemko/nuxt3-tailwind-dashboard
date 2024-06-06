@@ -53,8 +53,8 @@ const columns = [
   { key: 'customerName', label: 'Customer Name', sortable: true },
   { key: 'email', label: 'Email' },
   { key: 'phoneNumber', label: 'Phone Number' },
-  { key: 'age', label: 'Age' },
-  { key: 'gender', label: 'Gender' },
+  { key: 'age', label: 'Age', sortable: true },
+  { key: 'gender', label: 'Gender', sortable: true },
   { key: 'paymentType', label: 'Payment Type', sortable: true },
   { key: 'notes', label: 'Notes' },
 ];

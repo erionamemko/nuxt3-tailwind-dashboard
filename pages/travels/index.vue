@@ -63,7 +63,7 @@ const columns = [
   { key: "returnDate", label: "Return Date" },
   { key: "userRating", label: "User Rating", sortable: true },
   { key: "description", label: "Description" },
-  { key: "location", label: "Location" },
+  { key: "location", label: "Location", sortable: true },
 ];
 
 const travels = computed(() => travelsStore.getTravels());

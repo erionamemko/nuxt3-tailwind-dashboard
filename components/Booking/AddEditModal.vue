@@ -137,10 +137,18 @@ import { type Booking } from "~/types/booking";
 import { type Travel } from "~/types/travel";
 
 const props = defineProps({
-  isModalOpen: Boolean,
-  isEdit: Boolean,
-  bookingData: Object as () => Booking,
-  travels: Array as () => Travel[],
+  isEdit: {
+    type: Boolean,
+    default: false,
+  },
+  bookingData: {
+    type: Object as () => Travel,
+    required: false,
+  },
+  isModalOpen: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const emits = defineEmits(["close", "submit"]);

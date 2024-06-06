@@ -1,5 +1,11 @@
 <template>
   <div>
-    <h1 class="text-2xl font-bold mb-6">Dashboard</h1>
+     <img src="/images/bg.jpg" class="h-lvh w-lvh object-cover" />
   </div>
 </template>
+
+<script setup lang="ts">
+definePageMeta({
+  layout: 'custom'
+})
+</script>

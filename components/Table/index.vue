@@ -1,5 +1,5 @@
 <template>
-  <div class="border rounded-lg divide-y divide-gray-200 overflow-x-auto max-w-[95%] overflow-x-scroll margin-x-auto ml-auto mr-auto">
+  <div class="border rounded-lg divide-y divide-gray-200 overflow-x-auto max-w-[98%] overflow-x-scroll margin-x-auto ml-auto mr-auto">
     <div class="flex justify-between mb-4">
       <SearchBar @search="handleSearch" />
       <slot name="actions"></slot>
@@ -42,7 +42,7 @@
               v-if="column.key === 'imageUrl'"
               :src="row[column.key]"
               alt="travel Image"
-              class="w-32 h-32 object-cover rounded-tr-3xl shadow-xl ml-[-15px] rounded-bl-3xl"
+              class="w-32 h-32 object-cover rounded-tr-3xl shadow-xl ml-[-15px] rounded-bl-3xl min-w-48"
             />
             <span v-else>{{ row[column.key] }}</span>
           </td>

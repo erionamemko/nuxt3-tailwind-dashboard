@@ -9,7 +9,7 @@
         placeholder="Search..."
         name="hs-table-with-pagination-search"
         id="hs-table-with-pagination-search"
-        class="py-2 px-3 ps-9 block w-full border-gray-400 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+        class="py-2 px-3 ps-9 block w-full shadow-sm rounded-lg text-md focus:z-10 disabled:opacity-50 disabled:pointer-events-none border-b-[gray] border-b border-solid"
       />
       <svg
         v-if="searchQuery"

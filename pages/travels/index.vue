@@ -1,7 +1,19 @@
 <template>
   <div>
-    <Table :columns="columns" :data="travels" @edit="openEditTravelModal" @remove="openConfirmDeleteTravelModal">
-        <template #actions> <button @click="openAddTravelModal" class="text-white px-6 rounded mr-4 mt-4 bg-[#ff4758]">Add New Travel</button> </template>
+    <Table
+      :columns="columns"
+      :data="travels"
+      @edit="openEditTravelModal"
+      @remove="openConfirmDeleteTravelModal"
+    >
+      <template #actions>
+        <button
+          @click="openAddTravelModal"
+          class="text-white px-6 rounded mr-4 mt-4 bg-[#ff4758]"
+        >
+          Add New Travel
+        </button>
+      </template>
     </Table>
 
     <TravelAddEditModal
@@ -11,7 +23,6 @@
       @close="closeAddEditTravelModal"
       @submit="handleAddEditTravel"
     />
-
     <ModalConfirm
       :isModalOpen="isConfirmDeleteModalOpen"
       message="Are you sure you want to delete this travel?"
@@ -22,8 +33,8 @@
 </template>
 
 <script setup lang="ts">
-import { useTravelsStore } from '~/store/travels';
-import { type Travel } from '~/types/travel';
+import { useTravelsStore } from "~/store/travels";
+import { type Travel } from "~/types/travel";
 
 const travelsStore = useTravelsStore();
 
@@ -32,26 +43,26 @@ const isConfirmDeleteModalOpen = ref(false);
 const isEdit = ref(false);
 const selectedTravel = reactive<Travel>({
   travelId: 0,
-  travelTitle: '',
+  travelTitle: "",
   price: 0,
-  departureDate: '',
-  returnDate: '',
+  departureDate: "",
+  returnDate: "",
   userRating: 0,
-  description: '',
-  location: '',
-  imageUrl: ''
+  description: "",
+  location: "",
+  imageUrl: "",
 });
 const travelToDelete = ref<number | null>(null);
 
 const columns = [
-  { key: 'imageUrl', label: 'Image' },
-  { key: 'travelTitle', label: 'Travel', sortable: true },
-  { key: 'price', label: 'Price', sortable: true },
-  { key: 'departureDate', label: 'Departure Date' },
-  { key: 'returnDate', label: 'Return Date' },
-  { key: 'userRating', label: 'User Rating', sortable: true },
-  { key: 'description', label: 'Description' },
-  { key: 'location', label: 'Location' },
+  { key: "imageUrl", label: "Image" },
+  { key: "travelTitle", label: "Travel", sortable: true },
+  { key: "price", label: "Price", sortable: true },
+  { key: "departureDate", label: "Departure Date" },
+  { key: "returnDate", label: "Return Date" },
+  { key: "userRating", label: "User Rating", sortable: true },
+  { key: "description", label: "Description" },
+  { key: "location", label: "Location" },
 ];
 
 const travels = computed(() => travelsStore.getTravels());
@@ -60,14 +71,14 @@ const openAddTravelModal = () => {
   isEdit.value = false;
   Object.assign(selectedTravel, {
     travelId: 0,
-    travelTitle: '',
+    travelTitle: "",
     price: 0,
-    departureDate: '',
-    returnDate: '',
+    departureDate: "",
+    returnDate: "",
     userRating: 0,
-    description: '',
-    location: '',
-    imageUrl: ''
+    description: "",
+    location: "",
+    imageUrl: "",
   });
   isAddEditTravelModalOpen.value = true;
 };
@@ -77,7 +88,6 @@ const openEditTravelModal = (travel: Travel) => {
   Object.assign(selectedTravel, travel);
   isAddEditTravelModalOpen.value = true;
 };
-
 const closeAddEditTravelModal = () => {
   isAddEditTravelModalOpen.value = false;
 };
@@ -111,7 +121,3 @@ onMounted(() => {
   travelsStore.fetchTravels();
 });
 </script>
-
-<style scoped>
-/* Add any additional styles if necessary */
-</style>

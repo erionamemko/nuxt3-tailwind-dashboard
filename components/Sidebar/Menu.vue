@@ -11,7 +11,7 @@
           :href="item.path"
           v-for="(item, index) in items"
           :key="index"
-          class="inline-flex items-center justify-center py-3 hover:text-gray-400 bg-[#ff4758] focus:text-gray-400 bg-[#ff4758)] rounded-lg"
+          class="inline-flex items-center justify-center py-3 hover:text-gray-400 bg-[#ff4758] focus:text-gray-400 rounded-lg"
         >
           <Icon
             size="30"
@@ -25,8 +25,14 @@
   </div>
 </template>
 
-<script setup>
-const items = ref([
+<script lang="ts" setup>
+
+interface MenuItem {
+  path: string;
+  icon: string;
+}
+
+const items = ref<MenuItem[]>([
   {
     path: "/",
     icon: "ri:dashboard-line",

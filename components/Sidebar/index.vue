@@ -1,34 +1,39 @@
 <template>
   <div>
-    <div
-      class="z-50 flex items-center justify-between w-full h-full p-4 lg:hidden"
-    >
-      <img width="60" src="/svg/wr-mobile.svg" />
+    <!-- Mobile Menu Button -->
+    <div class="lg:hidden flex items-center justify-between p-4 absolute">
       <Icon
-        class="z-50 cursor-pointer left-2 top-2"
+        class="cursor-pointer"
         size="30"
         name="iconamoon:menu-burger-horizontal"
-        @click="open = true"
+        @click="toggleSidebar"
       />
-      <div
-        v-if="open"
-        class="fixed bg-white top-0 left-0 z-[999] w-full h-full h-screen"
-      >
+    </div>
+
+    <!-- Mobile Sidebar -->
+    <transition name="fade">
+      <div v-if="isSidebarOpen" class="fixed inset-0 bg-white z-50 lg:hidden" @click.prevent="toggleSidebar">
         <Icon
-          class="absolute z-50 cursor-pointer right-4 top-4"
+          class="absolute cursor-pointer top-4 right-4"
           size="30"
           name="material-symbols:close"
-          @click="open = false"
         />
         <SidebarMenu />
       </div>
-    </div>
-    <div class="hidden lg:flex h-screen flex flex-col justify-between border-r">
+    </transition>
+
+    <!-- Desktop Sidebar -->
+    <div class="hidden lg:flex h-screen flex-col justify-between border-r">
       <SidebarMenu />
     </div>
   </div>
 </template>
 
-<script setup>
-const open = ref(true);
+<script lang="ts" setup>
+const isSidebarOpen = ref(false);
+
+const toggleSidebar = () => {
+  console.log('test')
+  isSidebarOpen.value = !isSidebarOpen.value;
+};
 </script>

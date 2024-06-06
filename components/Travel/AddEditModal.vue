@@ -9,7 +9,7 @@
           >Travel Title</label
         >
         <input
-          v-model="travel.travelTitle"
+          v-model="travelData.travelTitle"
           type="text"
           id="travelTitle"
           class="p-2 border border-gray-300 rounded w-full"
@@ -21,7 +21,7 @@
           >Price</label
         >
         <input
-          v-model="travel.price"
+          v-model="travelData.price"
           type="number"
           id="price"
           class="p-2 border border-gray-300 rounded w-full"
@@ -35,7 +35,7 @@
           >Departure Date</label
         >
         <input
-          v-model="travel.departureDate"
+          v-model="travelData.departureDate"
           type="date"
           id="departureDate"
           class="p-2 border border-gray-300 rounded w-full"
@@ -47,7 +47,7 @@
           >Return Date</label
         >
         <input
-          v-model="travel.returnDate"
+          v-model="travelData.returnDate"
           type="date"
           id="returnDate"
           class="p-2 border border-gray-300 rounded w-full"
@@ -59,7 +59,7 @@
           >User Rating</label
         >
         <input
-          v-model="travel.userRating"
+          v-model="travelData.userRating"
           type="number"
           step="0.1"
           min="0"
@@ -74,7 +74,7 @@
           >Description</label
         >
         <textarea
-          v-model="travel.description"
+          v-model="travelData.description"
           id="description"
           class="p-2 border border-gray-300 rounded w-full"
           required
@@ -85,7 +85,7 @@
           >Location</label
         >
         <input
-          v-model="travel.location"
+          v-model="travelData.location"
           type="text"
           id="location"
           class="p-2 border border-gray-300 rounded w-full"
@@ -97,7 +97,7 @@
           >Image URL</label
         >
         <input
-          v-model="travel.image"
+          v-model="travelData.imageUrl"
           type="text"
           id="image"
           class="p-2 border border-gray-300 rounded w-full"
@@ -140,7 +140,7 @@ const travel = ref<Travel>({
   userRating: 0,
   description: "",
   location: "",
-  image: "",
+  imageUrl: "",
 });
 
 watch(
@@ -158,7 +158,7 @@ const closeModal = () => {
 };
 
 const submitForm = () => {
-  emits("submit", travel.value);
+  emits("submit", props.travelData);
 };
 </script>
 

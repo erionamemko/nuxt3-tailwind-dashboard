@@ -1,25 +1,5 @@
 <template>
   <header class="flex items-center h-20 px-6 sm:px-10 bg-white shadow-lg">
-    <button
-      class="block sm:hidden relative flex-shrink-0 p-2 mr-2 text-gray-600 hover:bg-gray-100 hover:text-gray-800 focus:bg-gray-100 focus:text-gray-800 rounded-full"
-      @click="toggleSidebar"
-    >
-      <span class="sr-only">Menu</span>
-      <svg
-        aria-hidden="true"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-        class="h-6 w-6"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h7"
-        />
-      </svg>
-    </button>
     <div class="flex flex-shrink-0 items-center ml-auto">
       <button class="inline-flex items-center p-2 hover:bg-gray-100 focus:bg-gray-100 rounded-lg">
         <span class="sr-only">User Menu</span>

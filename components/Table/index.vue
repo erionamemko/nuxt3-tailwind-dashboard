@@ -3,7 +3,6 @@
     <div class="flex justify-between mb-4">
       <SearchBar @search="handleSearch" />
       <slot name="actions"></slot>
-      <!-- Other pagination controls here -->
     </div>
     <table
       class="min-w-full bg-white border border-gray-200 shadow-md min-w-full divide-y divide-gray-200 overflow-scroll"
@@ -16,9 +15,8 @@
             @click="column.sortable ? sortBy(column.key) : null"
             class="py-2 px-4 border-b border-gray-200 text-left cursor-pointer"
           >
-            <div class="flex items-center justify-start">
+            <div class="flex items-center justify-start min-w-32">
               <span>{{ column.label }}</span>
-              <!-- isSortDescending sortKey === column.key -->
               <span class="flex" v-if="column.sortable">
                 <Icon
                   size="20"

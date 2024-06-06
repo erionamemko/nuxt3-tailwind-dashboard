@@ -23,7 +23,7 @@
     </transition>
 
     <!-- Desktop Sidebar -->
-    <div class="hidden lg:flex h-screen flex-col justify-between border-r">
+    <div class="hidden lg:flex h-screen flex-col justify-between border-r min-w-24">
       <SidebarMenu />
     </div>
   </div>

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <header
-      class="flex items-center gap-2 p-4 hover:scale-[101%] transition cursor-pointer"
+    <div
+      class="flex items-center gap-2 p-4 hover:scale-[101%] transition cursor-pointer mb-5"
     >
       <img width="60" src="/svg/wr-mobile.svg" />
-    </header>
+    </div>
     <div class="px-4 grow">
       <div class="grid gap-2">
         <NuxtLink

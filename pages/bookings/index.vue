@@ -48,7 +48,7 @@ const selectedBooking = reactive<Booking>({
 const bookingToDelete = ref<number | null>(null);
 
 const columns = [
-  { key: 'travelTitle', label: 'travel Title', sortable: true },
+  { key: 'travelTitle', label: 'Travel title', sortable: true },
   { key: 'customerName', label: 'Customer Name', sortable: true },
   { key: 'email', label: 'Email' },
   { key: 'phoneNumber', label: 'Phone Number' },

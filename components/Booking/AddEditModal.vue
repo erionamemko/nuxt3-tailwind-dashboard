@@ -142,6 +142,10 @@ const props = defineProps({
     default: false,
   },
   bookingData: {
+    type: Object as () => Booking,
+    required: false,
+  },
+  travels: {
     type: Object as () => Travel,
     required: false,
   },

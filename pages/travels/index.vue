@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-4xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-sky-600 from-rose-400 ml-5">Bookings</span></h1>
     <Table
       :columns="columns"
       :data="travels"

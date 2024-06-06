@@ -1,5 +1,8 @@
 <template>
   <header class="flex items-center h-20 px-6 sm:px-10 bg-white shadow-lg">
+    <div class="relative w-full max-w-md sm:-ml-2">
+      <h1 class="mb-4 text-2xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-4xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-rose-600 from-sky-400">Dash</span>Board.</h1>
+    </div>
     <div class="flex flex-shrink-0 items-center ml-auto">
       <button class="inline-flex items-center p-2 hover:bg-gray-100 focus:bg-gray-100 rounded-lg">
         <span class="sr-only">User Menu</span>

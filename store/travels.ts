@@ -1,4 +1,3 @@
-// stores/travels.ts
 import { defineStore } from "pinia";
 import { type Travel } from "~/types/travel";
 

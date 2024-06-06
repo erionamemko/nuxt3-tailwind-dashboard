@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-4xl ml-4"><span class="text-transparent bg-clip-text bg-gradient-to-r to-sky-600 from-rose-400">Travels</span></h1>
     <Table :columns="columns" :data="filteredBookings" @edit="openEditBookingModal" @remove="openConfirmDeleteBookingModal">
         <template #actions>
             <button @click="openAddBookingModal" class="text-white px-6 rounded mr-4 mt-4 bg-[#ff4758]">Add New Booking</button>

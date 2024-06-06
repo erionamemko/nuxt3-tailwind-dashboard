@@ -19,6 +19,7 @@
             list="travels"
             class="w-full mb-4 p-2 border rounded"
             @input="searchtravels"
+            required
           />
           <datalist id="travels">
             <option

@@ -157,10 +157,6 @@ const nextPage = () => {
 
 const handleSearch = (query: string) => {
   searchQuery.value = query;
-  currentPage.value = 1; // Reset to the first page after a search
+  currentPage.value = 1;
 };
 </script>
-
-<style scoped>
-/* Add any additional styles if necessary */
-</style>

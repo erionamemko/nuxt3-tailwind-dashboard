@@ -14,16 +14,16 @@
         <div v-if="step === 1">
           <label for="travel" class="block mb-2">Select travel:</label>
           <input
-            v-model="selectedtravelTitle"
+            v-model="selectedTravelTitle"
             type="text"
             list="travels"
             class="w-full mb-4 p-2 border rounded"
-            @input="searchtravels"
+            @input="searchTravels"
             required
           />
           <datalist id="travels">
             <option
-              v-for="travel in filteredtravels"
+              v-for="travel in filteredTravels"
               :key="travel.travelId"
               :value="travel.travelTitle"
             >
@@ -75,12 +75,13 @@
             class="w-full mb-4 p-2 border rounded"
             required
           >
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
           </select>
         </div>
         <div v-if="step === 3">
+          {{ bookingData.paymentType }}
           <label for="paymentType" class="block mb-2">Payment Type:</label>
           <select
             v-model="bookingData.paymentType"
@@ -88,7 +89,7 @@
             class="w-full mb-4 p-2 border rounded"
             required
           >
-            <option value="Credit transfer">Credit transfer</option>
+            <option value="Credit Transfer">Credit Transfer</option>
             <option value="Paypal">Paypal</option>
             <option value="Revolut">Revolut</option>
           </select>
@@ -102,32 +103,43 @@
         </div>
         <div class="flex justify-between">
           <button
-            type="button"
-            @click="previousStep"
             v-if="step > 1"
             class="bg-gray-500 text-white px-4 py-2 rounded"
+            title="Previous step"
+            type="button"
+            @click="previousStep"
           >
             Previous
           </button>
           <button
-            type="button"
-            @click="nextStep"
             v-if="step < 3"
             class="bg-blue-500 text-white px-4 py-2 rounded"
+            title="Next step"
+            type="button"
+            @click="nextStep"
           >
             Next
           </button>
           <button
-            type="submit"
             v-if="step === 3"
             class="bg-green-500 text-white px-4 py-2 rounded"
+            :title="isEdit ? 'Update' : 'Add'"
+            type="submit"
           >
             {{ isEdit ? "Update" : "Add" }}
           </button>
         </div>
       </form>
-      <button @click="closeModal" class="absolute top-2 right-2 text-gray-600">
-        ✕
+      <button
+        class="absolute top-2 right-2 text-gray-600"
+        title="Close"
+        @click="closeModal">
+      <Icon
+          size="30"
+          name="material-symbols:close-small-outline-rounded"
+          color="black"
+          class="text-gray-400 absolute top-2 right-2 cursor-pointer hover:text-gray-600"
+          />
       </button>
     </div>
   </div>
@@ -144,11 +156,11 @@ const props = defineProps({
   },
   bookingData: {
     type: Object as () => Booking,
-    required: false,
+    required: true,
   },
   travels: {
-    type: Object as () => Travel,
-    required: false,
+    type: Array as () => Travel[],
+    required: true,
   },
   isModalOpen: {
     type: Boolean,
@@ -159,37 +171,34 @@ const props = defineProps({
 const emits = defineEmits(["close", "submit"]);
 
 const step = ref(1);
-const selectedtravelTitle = ref("");
-const filteredtravels = ref<Travel[]>(props.travels);
+const selectedTravelTitle = ref("");
+const filteredTravels = ref<Travel[]> (props.travels);
 
-const searchtravels = () => {
-  filteredtravels.value = props.travels.filter((travel) =>
+const searchTravels = () => {
+  filteredTravels.value = props.travels.filter((travel) =>
     travel.travelTitle
       .toLowerCase()
-      .includes(selectedtravelTitle.value.toLowerCase())
+      .includes(selectedTravelTitle.value.toLowerCase())
   );
 };
-
 watch(
   () => props.isModalOpen,
   (newVal) => {
     if (newVal) {
       step.value = 1;
-      selectedtravelTitle.value =
-        props.travels.find(
-          (travel) => travel.travelId === props.bookingData.travelId
-        )?.travelTitle || "";
+      const currentTravel = props.travels.find((travel) => travel.travelId === props.bookingData.travelId)
+      selectedTravelTitle.value = currentTravel?.travelTitle || "";
     }
   }
 );
 
 const nextStep = () => {
   if (step.value === 1) {
-    const selectedtravel = props.travels.find(
-      (travel) => travel.travelTitle === selectedtravelTitle.value
+    const selectedTravel = props.travels.find(
+      (travel) => travel.travelTitle === selectedTravelTitle.value
     );
-    if (selectedtravel) {
-      props.bookingData.travelId = selectedtravel.travelId;
+    if (selectedTravel) {
+      props.bookingData.travelId = selectedTravel.travelId;
       step.value = 2;
     }
   } else if (step.value === 2) {

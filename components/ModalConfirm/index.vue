@@ -5,14 +5,16 @@
     </div>
     <div class="flex justify-end">
       <button
-        @click="confirmAction"
         class="bg-red-500 text-white px-4 py-2 rounded mr-2"
+        title="Yes"
+        @click="confirmAction"
       >
         Yes
       </button>
       <button
-        @click="closeModal"
         class="bg-gray-500 text-white px-4 py-2 rounded"
+        title="No"
+        @click="closeModal"
       >
         No
       </button>

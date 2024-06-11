@@ -13,12 +13,12 @@
       />
        <Icon
         v-if="searchQuery"
-            @click="clearSearch"
-            size="30"
-            name="material-symbols:close-small-outline-rounded"
-            color="black"
-            class="h-6 w-6 text-gray-400 absolute top-2 right-2 cursor-pointer hover:text-gray-600"
-          />
+          @click="clearSearch"
+          size="24"
+          name="material-symbols:close-small-outline-rounded"
+          color="black"
+          class="text-gray-400 absolute top-2 right-2 cursor-pointer hover:text-gray-600"
+        />
       <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-2">
          <Icon
             size="24"

@@ -46,14 +46,16 @@
           </td>
           <td class="py-2 px-4 border-b border-gray-200">
             <button
-              @click="$emit('edit', row)"
               class="text-blue-500 hover:text-blue-700 mr-2"
+              title="Edit"
+              @click="$emit('edit', row)"
             >
               Edit
             </button>
             <button
-              @click="$emit('remove', row)"
               class="text-red-500 hover:text-red-700"
+              title="Delete"
+              @click="$emit('remove', row)"
             >
               Delete
             </button>
@@ -63,17 +65,19 @@
     </table>
     <div class="flex justify-between items-center mt-4">
       <button
+        class="px-4 py-2 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
+        title="Previous"
         @click="prevPage"
         :disabled="currentPage === 1"
-        class="px-4 py-2 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
       >
         Previous
       </button>
       <span>Page {{ currentPage }} of {{ totalPages }}</span>
       <button
+        class="px-4 py-2 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
+        title="Next"
         @click="nextPage"
         :disabled="currentPage === totalPages"
-        class="px-4 py-2 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
       >
         Next
       </button>

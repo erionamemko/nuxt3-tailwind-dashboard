@@ -104,7 +104,7 @@
           required
         />
       </div>
-      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
+      <button class="bg-blue-500 text-white px-4 py-2 rounded" :title="isEdit ? 'Update' : 'Add'" type="submit">
         {{ isEdit ? "Update" : "Add" }} travel
       </button>
     </form>
@@ -121,7 +121,7 @@ const props = defineProps({
   },
   travelData: {
     type: Object as () => Travel,
-    required: false,
+    required: true,
   },
   isModalOpen: {
     type: Boolean,
@@ -161,7 +161,3 @@ const submitForm = () => {
   emits("submit", props.travelData);
 };
 </script>
-
-<style scoped>
-/* Add your styles here */
-</style>

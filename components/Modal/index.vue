@@ -7,8 +7,13 @@
       <button
         @click="closeModal"
         class="absolute top-0 right-0 m-2 text-gray-600"
+        title="Close"
       >
-        X
+      <Icon
+          class="cursor-pointer text-gray-800"
+          size="20"
+          name="material-symbols:close"
+        />
       </button>
       <slot></slot>
     </div>

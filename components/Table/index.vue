@@ -15,7 +15,7 @@
             @click="column.sortable ? sortBy(column.key) : null"
             class="py-2 px-4 border-b border-gray-200 text-left cursor-pointer"
           >
-            <div class="flex items-center justify-start min-w-36">
+            <div class="flex items-center justify-start">
               <span>{{ column.label }}</span>
               <span class="flex" v-if="column.sortable">
                 <Icon
@@ -39,6 +39,7 @@
             <img
               v-if="column.key === 'imageUrl'"
               :src="row[column.key]"
+              @error="handleImageError($event)"
               alt="travel Image"
               class="w-32 h-32 object-cover rounded-tr-3xl shadow-xl ml-[-15px] rounded-bl-3xl min-w-48"
             />
@@ -162,5 +163,8 @@ const nextPage = () => {
 const handleSearch = (query: string) => {
   searchQuery.value = query;
   currentPage.value = 1;
+};
+const handleImageError = (event: Event) => {
+  (event.target as HTMLImageElement).src = '/svg/places.svg';
 };
 </script>

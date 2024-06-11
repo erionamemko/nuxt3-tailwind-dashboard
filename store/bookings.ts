@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
 import { type Booking } from "~/types/booking";
 
 export const useBookingsStore = defineStore("bookings", () => {
@@ -36,6 +35,10 @@ export const useBookingsStore = defineStore("bookings", () => {
     bookings.value = bookings.value.filter((b) => b.bookingId !== bookingId);
   };
 
+  const removeBookingsByTravelId = (travelId: number) => {
+    bookings.value = bookings.value.filter((booking) => booking.travelId !== travelId);
+  };
+
   const getBookings = () => bookings.value;
 
   return {
@@ -45,5 +48,6 @@ export const useBookingsStore = defineStore("bookings", () => {
     removeBooking,
     getBookings,
     fetchBookings,
+    removeBookingsByTravelId
   };
 });

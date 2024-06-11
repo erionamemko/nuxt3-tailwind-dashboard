@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-4xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-sky-600 from-rose-400 ml-5">Bookings</span></h1>
+    <h1 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-4xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-sky-600 from-rose-400 ml-5">Travels</span></h1>
     <Table
       :columns="columns"
       :data="travels"
@@ -9,8 +9,9 @@
     >
       <template #actions>
         <button
-          @click="openAddTravelModal"
           class="text-white px-6 rounded mr-4 mt-4 bg-[#ff4758]"
+          title="Add New Travel"
+          @click="openAddTravelModal"
         >
           Add New Travel
         </button>
@@ -26,7 +27,7 @@
     />
     <ModalConfirm
       :isModalOpen="isConfirmDeleteModalOpen"
-      message="Are you sure you want to delete this travel?"
+      message="Are you sure you want to delete this travel? Deleting this travel you will also delete all the bookings connected to this travel!!!!!!!"
       @close="closeConfirmDeleteModal"
       @confirm="handleConfirmDeleteTravel"
     />
@@ -35,14 +36,16 @@
 
 <script setup lang="ts">
 import { useTravelsStore } from "~/store/travels";
+import { useBookingsStore } from "~/store/bookings";
 import { type Travel } from "~/types/travel";
 
 const travelsStore = useTravelsStore();
+const bookingsStore = useBookingsStore();
 
 const isAddEditTravelModalOpen = ref(false);
 const isConfirmDeleteModalOpen = ref(false);
 const isEdit = ref(false);
-const selectedTravel = reactive<Travel>({
+const selectedTravel = ref<Travel>({
   travelId: 0,
   travelTitle: "",
   price: 0,
@@ -70,23 +73,12 @@ const travels = computed(() => travelsStore.getTravels());
 
 const openAddTravelModal = () => {
   isEdit.value = false;
-  Object.assign(selectedTravel, {
-    travelId: 0,
-    travelTitle: "",
-    price: 0,
-    departureDate: "",
-    returnDate: "",
-    userRating: 0,
-    description: "",
-    location: "",
-    imageUrl: "",
-  });
   isAddEditTravelModalOpen.value = true;
 };
 
 const openEditTravelModal = (travel: Travel) => {
   isEdit.value = true;
-  Object.assign(selectedTravel, travel);
+  selectedTravel.value = {...selectedTravel, ...travel }
   isAddEditTravelModalOpen.value = true;
 };
 const closeAddEditTravelModal = () => {
@@ -114,6 +106,7 @@ const closeConfirmDeleteModal = () => {
 const handleConfirmDeleteTravel = () => {
   if (travelToDelete.value !== null) {
     travelsStore.removeTravel(travelToDelete.value);
+    bookingsStore.removeBookingsByTravelId(travelToDelete.value)
   }
   closeConfirmDeleteModal();
 };

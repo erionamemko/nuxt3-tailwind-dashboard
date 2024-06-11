@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h1 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-4xl ml-4"><span class="text-transparent bg-clip-text bg-gradient-to-r to-sky-600 from-rose-400">Travels</span></h1>
-    <Table :columns="columns" :data="filteredBookings" @edit="openEditBookingModal" @remove="openConfirmDeleteBookingModal">
+    <h1 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-4xl ml-4"><span class="text-transparent bg-clip-text bg-gradient-to-r to-sky-600 from-rose-400">Bookings</span></h1>
+    <Table :columns="tableColumnsData" :data="filteredBookings" @edit="openEditBookingModal" @remove="openConfirmDeleteBookingModal">
         <template #actions>
-            <button @click="openAddBookingModal" class="text-white px-6 rounded mr-4 mt-4 bg-[#ff4758]">Add New Booking</button>
+            <button class="text-white px-6 rounded mr-4 mt-4 bg-[#ff4758]" title="Add New Booking" @click="openAddBookingModal">Add New Booking</button>
         </template>
     </Table>
+
     <BookingAddEditModal
       :isModalOpen="isAddEditBookingModalOpen"
       :isEdit="isEdit"
@@ -35,7 +36,7 @@ const bookingsStore = useBookingsStore();
 const isAddEditBookingModalOpen = ref(false);
 const isConfirmDeleteModalOpen = ref(false);
 const isEdit = ref(false);
-const selectedBooking = reactive<Booking>({
+const selectedBooking = ref<Booking>({
   bookingId: 0,
   travelId: 0,
   customerName: '',
@@ -48,7 +49,7 @@ const selectedBooking = reactive<Booking>({
 });
 const bookingToDelete = ref<number | null>(null);
 
-const columns = [
+const tableColumnsData = [
   { key: 'travelTitle', label: 'Travel title', sortable: true },
   { key: 'customerName', label: 'Customer Name', sortable: true },
   { key: 'email', label: 'Email' },
@@ -62,6 +63,14 @@ const columns = [
 const travels = computed(() => travelsStore.getTravels());
 const bookings = computed(() => bookingsStore.getBookings());
 
+//Todo: send only necessary data on component
+// const travelTitlesAndIds = computed(() =>
+//   travels.value.map((travel) => ({
+//     id: travel.travelId,
+//     travelTitle: travel.travelTitle,
+//   }))
+// );
+
 const filteredBookings = computed(() => {
   return bookings.value.map(booking => {
     const travel = travels.value.find(t => t.travelId === booking.travelId);
@@ -73,35 +82,18 @@ const filteredBookings = computed(() => {
 });
 
 const openAddBookingModal = async () => {
-  if (!travelsStore.isLoaded) {
-    await travelsStore.fetchTravels();
-  }
   isEdit.value = false;
-  Object.assign(selectedBooking, {
-    bookingId: 0,
-    travelId: 0,
-    customerName: '',
-    email: '',
-    phoneNumber: '',
-    age: 0,
-    gender: '',
-    paymentType: '',
-    notes: '',
-  });
   isAddEditBookingModalOpen.value = true;
 };
 
 const openEditBookingModal = async (booking: Booking) => {
-  if (!travelsStore.isLoaded) {
-    await travelsStore.fetchTravels();
-  }
   isEdit.value = true;
-  Object.assign(selectedBooking, booking);
+  selectedBooking.value = {...selectedBooking, ...booking};
   isAddEditBookingModalOpen.value = true;
 };
 
 const openConfirmDeleteBookingModal = (booking: Booking) => {
-  if (booking && booking.bookingId !== undefined) {
+  if (booking?.bookingId) {
     bookingToDelete.value = booking.bookingId;
     isConfirmDeleteModalOpen.value = true;
   } else {
@@ -136,10 +128,7 @@ const handleConfirmDeleteBooking = () => {
 // Fetch bookings only when component is mounted and if not already loaded
 onMounted(() => {
   bookingsStore.fetchBookings();
+  travelsStore.fetchTravels();
   
 });
 </script>
-
-<style scoped>
-/* Add your styles here */
-</style>

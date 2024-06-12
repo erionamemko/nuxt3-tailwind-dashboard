@@ -189,13 +189,22 @@ watch(
 );
 
 const nextStep = () => {
-  if (formRef.value) {
-    if (!formRef.value.checkValidity()) {
-      formRef.value.reportValidity();
-    } else {
-      step.value++;
-    }
+  const form = formRef.value;
+  if (form && !form.checkValidity()) {
+    form.reportValidity();
+    return;
   }
+  if (step.value === 1) {
+    const selectedTravel = props.travels.find(
+      (travel) =>
+        travel.travelTitle.toLowerCase() ===
+        selectedTravelTitle.value.toLowerCase()
+    );
+    props.bookingData.travelId = selectedTravel?.travelId || 0;
+    step.value = 2;
+    return;
+  }
+  step.value++;
 };
 
 const previousStep = () => {

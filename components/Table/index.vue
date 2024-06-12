@@ -76,7 +76,8 @@
         </tr>
       </tbody>
     </table>
-    <div class="flex justify-between items-center mt-4">
+  </div>
+  <div class="flex justify-between items-center mt-4">
       <button
         class="px-4 py-2 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
         title="Previous"
@@ -94,8 +95,7 @@
       >
         Next
       </button>
-    </div>
-  </div>
+      </div>
 </template>
 
 <script setup lang="ts">

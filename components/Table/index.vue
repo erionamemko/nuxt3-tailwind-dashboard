@@ -1,19 +1,19 @@
 <template>
-  <div class="border rounded-lg divide-y divide-gray-200 overflow-x-auto max-w-[98%] overflow-x-scroll margin-x-auto ml-auto mr-auto">
-    <div class="flex justify-between mb-4">
-      <SearchBar @search="handleSearch" />
-      <slot name="actions"></slot>
-    </div>
-    <table
-      class="min-w-full bg-white border border-gray-200 shadow-md divide-y divide-gray-200 overflow-scroll"
-    >
-      <thead class="rounded-tl-3xl">
-        <tr class="bg-[#4d4d4d] text-white">
+  <div class="flex justify-between mb-4">
+    <SearchBar @search="handleSearch" />
+    <slot name="actions"></slot>
+  </div>
+  <div
+    class="border rounded-lg divide-y divide-gray-200 overflow-x-auto overflow-x-scroll margin-x-auto ml-auto mr-auto"
+  >
+    <table class="bg-white border border-gray-200 shadow-md">
+      <thead class="rounded-tl-3xl bg-black text-white">
+        <tr>
           <th
             v-for="column in columns"
             :key="column.key"
             @click="column.sortable ? sortBy(column.key) : null"
-            class="py-2 px-4 border-b border-gray-200 text-left cursor-pointer"
+            class="py-4 px-4 border-b border-gray-200 text-left cursor-pointer lg:min-w-[100px]"
           >
             <div class="flex items-center justify-start">
               <span>{{ column.label }}</span>
@@ -36,14 +36,26 @@
             :key="column.key"
             class="border-b border-gray-200 py-2 px-4 text-left"
           >
-            <img
-              v-if="column.key === 'imageUrl'"
-              :src="row[column.key]"
-              @error="handleImageError($event)"
-              alt="travel Image"
-              class="w-32 h-32 object-cover rounded-tr-3xl shadow-xl ml-[-15px] rounded-bl-3xl min-w-48"
-            />
-            <span v-else>{{ row[column.key] }}</span>
+          <img
+            v-if="column.key === 'imageUrl'"
+            :src="row[column.key]"
+            @error="handleImageError"
+            alt="travel Image"
+            class="w-32 h-32 object-cover rounded-tr-3xl ml-[-15px] rounded-bl-3xl min-w-48 shadow-[15px_9px_2px_-9px_rgba(0,0,0,0.88)]"
+          />
+          <span v-else-if="column.key === 'price'">
+            {{ row[column.key] }} €
+          </span>
+          <span v-else-if="column.key === 'userRating'">
+            {{ row[column.key] }} / 5
+          </span>
+          <span v-else-if="column.key !== 'departureDate' && column.key !== 'returnDate'">
+            {{ row[column.key] }}
+          </span>
+          <CalendarCard
+            v-else
+            :date="row[column.key]"
+          />
           </td>
           <td class="py-2 px-4 border-b border-gray-200">
             <button
@@ -97,6 +109,8 @@ const props = defineProps({
     required: true,
   },
 });
+
+const emit = defineEmits(['edit', 'remove']);
 
 const sortKey = ref("");
 const isSortDescending = ref(false);
@@ -165,6 +179,6 @@ const handleSearch = (query: string) => {
   currentPage.value = 1;
 };
 const handleImageError = (event: Event) => {
-  (event.target as HTMLImageElement).src = '/svg/places.svg';
+  (event.target as HTMLImageElement).src = "/svg/places.svg";
 };
 </script>

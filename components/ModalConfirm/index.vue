@@ -1,7 +1,14 @@
 <template>
   <Modal :isOpen="isModalOpen" @close="closeModal">
-    <div class="mb-4">
-      <p>{{ message }}</p>
+    <div class="text-black-600 mb-4">
+      
+      <p><Icon
+            size="30"
+            name="material-symbols:brightness-alert-outline"
+            color="orange"
+          />{{ message }}</p>
+      <p class="mt-6 font-[bold]" v-if="description">
+        {{ description }}</p>
     </div>
     <div class="flex justify-end">
       <button
@@ -27,6 +34,10 @@ const props = defineProps({
   message: {
     type: String,
     required: true,
+  },
+  description: {
+    type: String,
+    required: false,
   },
   isModalOpen: {
     type: Boolean,

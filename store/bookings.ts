@@ -19,7 +19,7 @@ export const useBookingsStore = defineStore("bookings", () => {
   };
 
   const addBooking = (booking: Booking) => {
-    bookings.value.push(booking);
+    bookings.value.unshift(booking);
   };
 
   const updateBooking = (updatedBooking: Booking) => {

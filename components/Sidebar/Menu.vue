@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="relative lg:fixed">
     <div
       class="flex items-center gap-2 p-4 hover:scale-[101%] transition cursor-pointer mb-5"
     >
@@ -11,13 +11,12 @@
           :href="item.path"
           v-for="(item, index) in items"
           :key="index"
-          class="inline-flex items-center justify-center py-3 hover:text-gray-400 bg-[#ff4758] focus:text-gray-400 rounded-lg"
+          class="inline-flex items-center justify-center py-3 bg-[#ff4758] hover:bg-black focus:bg-black hover:border-l-[5px] focus:border-l-[5px] border-[#ff4758] text-black hover:text-[#ff4758] focus:text-[#ff4758] rounded-lg"
         >
           <Icon
             size="30"
             :name="item.icon"
-            color="black"
-            class="hover:color-white"
+            class="color-black"
           />
         </NuxtLink>
       </div>
@@ -47,3 +46,12 @@ const items = ref<MenuItem[]>([
   },
 ]);
 </script>
+
+<style scoped>
+
+  .router-link-active { 
+    background-color: black;
+    color:#ff4758;
+    border-left: 5px inset;
+  }
+</style>

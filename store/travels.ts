@@ -19,7 +19,7 @@ export const useTravelsStore = defineStore("travels", () => {
   };
 
   const addTravel = (travel: Travel) => {
-    travels.value.push(travel);
+    travels.value.unshift(travel);
   };
 
   const updateTravel = (updatedTravel: Travel) => {

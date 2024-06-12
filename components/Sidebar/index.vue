@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-black">
     <!-- Mobile Menu Button -->
     <div class="lg:hidden flex items-center justify-between p-4 absolute">
       <Icon
@@ -12,7 +12,7 @@
 
     <!-- Mobile Sidebar -->
     <transition name="fade">
-      <div v-if="isSidebarOpen" class="fixed inset-0 bg-white z-50 lg:hidden" @click.prevent="toggleSidebar">
+      <div v-if="isSidebarOpen" class="fixed inset-0 z-50 lg:hidden bg-white lg:pb-0 pb-4" @click.prevent="toggleSidebar">
         <Icon
           class="absolute cursor-pointer top-4 right-4"
           size="30"

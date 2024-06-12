@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-4xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-sky-600 from-rose-400 ml-5">Travels</span></h1>
+    <h1 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white lg:text-3xl ml-5 color-[#ff4758]">Travels</h1>
     <Table
       :columns="columns"
       :data="travels"
@@ -27,7 +27,8 @@
     />
     <ModalConfirm
       :isModalOpen="isConfirmDeleteModalOpen"
-      message="Are you sure you want to delete this travel? Deleting this travel you will also delete all the bookings connected to this travel!!!!!!!"
+      message="Are you sure you want to delete this travel?"
+      description="Deleting this travel you will also delete all the bookings connected to this travel!!!"
       @close="closeConfirmDeleteModal"
       @confirm="handleConfirmDeleteTravel"
     />
@@ -62,11 +63,11 @@ const columns = [
   { key: "imageUrl", label: "Image" },
   { key: "travelTitle", label: "Travel", sortable: true },
   { key: "price", label: "Price", sortable: true },
-  { key: "departureDate", label: "Departure Date" },
-  { key: "returnDate", label: "Return Date" },
-  { key: "userRating", label: "User Rating", sortable: true },
-  { key: "description", label: "Description" },
+  { key: "userRating", label: "Rating", sortable: true },
   { key: "location", label: "Location", sortable: true },
+  { key: "description", label: "Description" },
+  { key: "departureDate", label: "Departure" },
+  { key: "returnDate", label: "Return" },
 ];
 
 const travels = computed(() => travelsStore.getTravels());

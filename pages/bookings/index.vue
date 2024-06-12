@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white md:text-5xl lg:text-4xl ml-4"><span class="text-transparent bg-clip-text bg-gradient-to-r to-sky-600 from-rose-400">Bookings</span></h1>
+    <h1 class="mb-4 text-2xl font-bold text-black-900 dark:text-white lg:text-3xl ml-4">Bookings</h1>
     <Table :columns="tableColumnsData" :data="filteredBookings" @edit="openEditBookingModal" @remove="openConfirmDeleteBookingModal">
         <template #actions>
             <button class="text-white px-6 rounded mr-4 mt-4 bg-[#ff4758]" title="Add New Booking" @click="openAddBookingModal">Add New Booking</button>
@@ -50,13 +50,13 @@ const selectedBooking = ref<Booking>({
 const bookingToDelete = ref<number | null>(null);
 
 const tableColumnsData = [
-  { key: 'travelTitle', label: 'Travel title', sortable: true },
-  { key: 'customerName', label: 'Customer Name', sortable: true },
+  { key: 'travelTitle', label: 'Travel', sortable: true },
+  { key: 'customerName', label: 'Customer', sortable: true },
   { key: 'email', label: 'Email' },
-  { key: 'phoneNumber', label: 'Phone Number' },
+  { key: 'phoneNumber', label: 'Phone' },
   { key: 'age', label: 'Age', sortable: true },
   { key: 'gender', label: 'Gender', sortable: true },
-  { key: 'paymentType', label: 'Payment Type', sortable: true },
+  { key: 'paymentType', label: 'Payment', sortable: true },
   { key: 'notes', label: 'Notes' },
 ];
 

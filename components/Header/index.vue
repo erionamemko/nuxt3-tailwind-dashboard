@@ -1,7 +1,7 @@
 <template>
   <header class="flex items-center h-20 px-6 sm:px-10 bg-white shadow-lg">
-    <div class="relative w-full max-w-md sm:-ml-2">
-      <h1 class="mb-4 text-2xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-4xl"><span class="text-transparent bg-clip-text bg-gradient-to-r to-rose-600 from-sky-400">Dash</span>Board.</h1>
+    <div class="flex relative w-full max-w-md ml-8 lg:-ml-2">
+      <h1 class="mb-4 text-xl font-extrabold text-gray-900 dark:text-white md:text-2xl lg:text-3xl"><span class="bg-[#ff4758] px-2">Dash</span>Board.</h1>
     </div>
     <div class="flex flex-shrink-0 items-center ml-auto">
       <button class="inline-flex items-center p-2 hover:bg-gray-100 focus:bg-gray-100 rounded-lg">
@@ -10,9 +10,9 @@
           <span class="font-semibold">Welcome back</span>
           <span class="text-sm text-gray-600">WeRoader</span>
         </div>
-        <span class="h-16 w-16 ml-2 sm:ml-3 mr-2 bg-gray-100 rounded-full overflow-hidden">
+        <span class="md:h-13 md:h-13 w-12 w-12 ml-2 sm:ml-3 mr-2 bg-gray-100 overflow-hidden">
           <img
-            src="/images/avatar.jpg"
+            src="/images/wr-black.jpg"
             alt="user profile photo"
             class="h-full w-full object-cover"
           />

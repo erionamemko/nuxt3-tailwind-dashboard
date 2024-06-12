@@ -1,6 +1,6 @@
 <template>
   <div>
-     <img src="/images/bg.jpg" class="h-lvh w-lvh object-cover" />
+     <img src="/images/bg.jpg" class="h-[89vh] w-full object-cover" />
   </div>
 </template>
 

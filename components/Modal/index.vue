@@ -3,7 +3,7 @@
     v-if="isOpen"
     class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
   >
-    <div class="bg-white p-6 rounded shadow-lg w-full max-w-md relative">
+    <div class="bg-white p-6 rounded shadow-lg w-full max-w-md relative max-h-[680px] overflow-scroll">
       <button
         @click="closeModal"
         class="absolute top-0 right-0 m-2 text-gray-600"

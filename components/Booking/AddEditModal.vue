@@ -4,20 +4,19 @@
     class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
     @click.self="closeModal"
   >
-    <div
-      class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white"
-    >
+    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
       <h2 class="text-lg font-bold mb-4">
         {{ isEdit ? "Edit Booking" : "Add Booking" }}
       </h2>
-      <form @submit.prevent="submitForm">
+      <form ref="formRef" @submit.prevent="submitForm">
         <div v-if="step === 1">
           <label for="travel" class="block mb-2">Select travel:</label>
           <input
             v-model="selectedTravelTitle"
             type="text"
+            placeholder="Search available travels.."
             list="travels"
-            class="w-full mb-4 p-2 border rounded"
+            class="w-full mb-2 p-2 border rounded"
             @input="searchTravels"
             required
           />
@@ -64,6 +63,7 @@
             v-model="bookingData.age"
             type="number"
             id="age"
+            min="16"
             class="w-full mb-4 p-2 border rounded"
             required
           />
@@ -81,7 +81,6 @@
           </select>
         </div>
         <div v-if="step === 3">
-          {{ bookingData.paymentType }}
           <label for="paymentType" class="block mb-2">Payment Type:</label>
           <select
             v-model="bookingData.paymentType"
@@ -133,13 +132,14 @@
       <button
         class="absolute top-2 right-2 text-gray-600"
         title="Close"
-        @click="closeModal">
-      <Icon
+        @click="closeModal"
+      >
+        <Icon
           size="30"
           name="material-symbols:close-small-outline-rounded"
           color="black"
           class="text-gray-400 absolute top-2 right-2 cursor-pointer hover:text-gray-600"
-          />
+        />
       </button>
     </div>
   </div>
@@ -172,7 +172,8 @@ const emits = defineEmits(["close", "submit"]);
 
 const step = ref(1);
 const selectedTravelTitle = ref("");
-const filteredTravels = ref<Travel[]> (props.travels);
+const filteredTravels = ref<Travel[]>(props.travels);
+const formRef = ref<HTMLFormElement | null>(null);
 
 const searchTravels = () => {
   filteredTravels.value = props.travels.filter((travel) =>
@@ -181,6 +182,7 @@ const searchTravels = () => {
       .includes(selectedTravelTitle.value.toLowerCase())
   );
 };
+
 watch(
   () => props.isModalOpen,
   (newVal) => {
@@ -193,16 +195,12 @@ watch(
 );
 
 const nextStep = () => {
-  if (step.value === 1) {
-    const selectedTravel = props.travels.find(
-      (travel) => travel.travelTitle === selectedTravelTitle.value
-    );
-    if (selectedTravel) {
-      props.bookingData.travelId = selectedTravel.travelId;
-      step.value = 2;
+  if (formRef.value) {
+    if (!formRef.value.checkValidity()) {
+      formRef.value.reportValidity();
+    } else {
+      step.value++;
     }
-  } else if (step.value === 2) {
-    step.value = 3;
   }
 };
 
@@ -211,10 +209,15 @@ const previousStep = () => {
 };
 
 const submitForm = () => {
-  emits("submit", props.bookingData);
+  if (formRef.value && formRef.value.checkValidity()) {
+    emits('submit', props.bookingData);
+    closeModal();
+  } else {
+    formRef.value?.reportValidity();
+  }
 };
 
 const closeModal = () => {
-  emits("close");
+  emits('close');
 };
 </script>

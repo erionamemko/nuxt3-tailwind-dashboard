@@ -5,57 +5,57 @@
         <h2 class="text-lg font-bold mb-4">
         {{ isEdit ? "Edit Travel" : "Add Travel" }}
       </h2>
-        <label for="travelTitle" class="block text-sm font-medium text-gray-700"
+        <label for="travelTitle" class="travel-modal-label"
           >Travel Title</label
         >
         <input
           v-model="travelData.travelTitle"
           type="text"
           id="travelTitle"
-          class="p-2 border border-gray-300 rounded w-full"
+          class="travel-modal-input"
           required
         />
       </div>
       <div class="mb-4">
-        <label for="price" class="block text-sm font-medium text-gray-700"
+        <label for="price" class="travel-modal-label"
           >Price</label
         >
         <input
           v-model="travelData.price"
           type="number"
           id="price"
-          class="p-2 border border-gray-300 rounded w-full"
+          class="travel-modal-input"
           required
         />
       </div>
       <div class="mb-4">
         <label
           for="departureDate"
-          class="block text-sm font-medium text-gray-700"
+          class="travel-modal-label"
           >Departure Date</label
         >
         <input
           v-model="travelData.departureDate"
           type="date"
           id="departureDate"
-          class="p-2 border border-gray-300 rounded w-full"
+          class="travel-modal-input"
           required
         />
       </div>
       <div class="mb-4">
-        <label for="returnDate" class="block text-sm font-medium text-gray-700"
+        <label for="returnDate" class="travel-modal-label"
           >Return Date</label
         >
         <input
           v-model="travelData.returnDate"
           type="date"
           id="returnDate"
-          class="p-2 border border-gray-300 rounded w-full"
+          class="travel-modal-input"
           required
         />
       </div>
       <div class="mb-4">
-        <label for="userRating" class="block text-sm font-medium text-gray-700"
+        <label for="userRating" class="travel-modal-label"
           >User Rating</label
         >
         <input
@@ -65,46 +65,46 @@
           min="0"
           max="5"
           id="userRating"
-          class="p-2 border border-gray-300 rounded w-full"
+          class="travel-modal-input"
           required
         />
       </div>
       <div class="mb-4">
-        <label for="description" class="block text-sm font-medium text-gray-700"
+        <label for="description" class="travel-modal-label"
           >Description</label
         >
         <textarea
           v-model="travelData.description"
           id="description"
-          class="p-2 border border-gray-300 rounded w-full"
+          class="travel-modal-input"
           required
         ></textarea>
       </div>
       <div class="mb-4">
-        <label for="location" class="block text-sm font-medium text-gray-700"
+        <label for="location" class="travel-modal-label"
           >Location</label
         >
         <input
           v-model="travelData.location"
           type="text"
           id="location"
-          class="p-2 border border-gray-300 rounded w-full"
+          class="travel-modal-input"
           required
         />
       </div>
       <div class="mb-4">
-        <label for="image" class="block text-sm font-medium text-gray-700"
+        <label for="image" class="travel-modal-label"
           >Image URL</label
         >
         <input
           v-model="travelData.imageUrl"
           type="text"
           id="image"
-          class="p-2 border border-gray-300 rounded w-full"
+          class="travel-modal-input"
           required
         />
       </div>
-      <button class="bg-blue-500 text-white px-4 py-2 rounded" :title="isEdit ? 'Update' : 'Add'" type="submit">
+      <button class="bg-blue-500 travel-modal-actions" :title="isEdit ? 'Update' : 'Add'" type="submit">
         {{ isEdit ? "Update" : "Add" }} travel
       </button>
     </form>
@@ -161,3 +161,19 @@ const submitForm = () => {
   emits("submit", props.travelData);
 };
 </script>
+
+<style lang="postcss" scoped>
+.form {
+  &-label {
+    @apply block text-sm font-medium text-gray-700;
+  }
+
+  &-input {
+    @apply p-2 border border-gray-300 rounded w-full;
+  }
+
+  &-actions {
+    @apply text-white px-4 py-2 rounded;
+  }
+}
+</style>

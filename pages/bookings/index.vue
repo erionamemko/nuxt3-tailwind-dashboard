@@ -1,10 +1,21 @@
 <template>
   <div>
-    <h1 class="mb-4 text-2xl font-bold text-black-900 dark:text-white lg:text-3xl ml-4">Bookings</h1>
-    <Table :columns="tableColumnsData" :data="filteredBookings" @edit="openEditBookingModal" @remove="openConfirmDeleteBookingModal">
-        <template #actions>
-            <button class="text-white px-6 rounded mr-4 mt-4 bg-[#ff4758]" title="Add New Booking" @click="openAddBookingModal">Add New Booking</button>
-        </template>
+    <h1 class="booking-page-title text-black-900">Bookings</h1>
+    <Table
+      :columns="tableColumnsData"
+      :data="filteredBookings"
+      @edit="openEditBookingModal"
+      @remove="openConfirmDeleteBookingModal"
+    >
+      <template #actions>
+        <button
+          class="bg-[#ff4758] booking-page-cta"
+          title="Add New Booking"
+          @click="openAddBookingModal"
+        >
+          Add New Booking
+        </button>
+      </template>
     </Table>
 
     <BookingAddEditModal
@@ -26,9 +37,9 @@
 </template>
 
 <script setup lang="ts">
-import { useTravelsStore } from '~/store/travels';
-import { useBookingsStore } from '~/store/bookings';
-import { type Booking } from '~/types/booking';
+import { useTravelsStore } from "~/store/travels";
+import { useBookingsStore } from "~/store/bookings";
+import { type Booking } from "~/types/booking";
 
 const travelsStore = useTravelsStore();
 const bookingsStore = useBookingsStore();
@@ -39,25 +50,25 @@ const isEdit = ref(false);
 const selectedBooking = ref<Booking>({
   bookingId: 0,
   travelId: 0,
-  customerName: '',
-  email: '',
-  phoneNumber: '',
+  customerName: "",
+  email: "",
+  phoneNumber: "",
   age: 0,
-  gender: '',
-  paymentType: '',
-  notes: '',
+  gender: "",
+  paymentType: "",
+  notes: "",
 });
 const bookingToDelete = ref<number | null>(null);
 
 const tableColumnsData = [
-  { key: 'travelTitle', label: 'Travel', sortable: true },
-  { key: 'customerName', label: 'Customer', sortable: true },
-  { key: 'email', label: 'Email' },
-  { key: 'phoneNumber', label: 'Phone' },
-  { key: 'age', label: 'Age', sortable: true },
-  { key: 'gender', label: 'Gender', sortable: true },
-  { key: 'paymentType', label: 'Payment', sortable: true },
-  { key: 'notes', label: 'Notes' },
+  { key: "travelTitle", label: "Travel", sortable: true },
+  { key: "customerName", label: "Customer", sortable: true },
+  { key: "email", label: "Email" },
+  { key: "phoneNumber", label: "Phone" },
+  { key: "age", label: "Age", sortable: true },
+  { key: "gender", label: "Gender", sortable: true },
+  { key: "paymentType", label: "Payment", sortable: true },
+  { key: "notes", label: "Notes" },
 ];
 
 const travels = computed(() => travelsStore.getTravels());
@@ -72,11 +83,11 @@ const bookings = computed(() => bookingsStore.getBookings());
 // );
 
 const filteredBookings = computed(() => {
-  return bookings.value.map(booking => {
-    const travel = travels.value.find(t => t.travelId === booking.travelId);
+  return bookings.value.map((booking) => {
+    const travel = travels.value.find((t) => t.travelId === booking.travelId);
     return {
       ...booking,
-      travelTitle: travel ? travel.travelTitle : 'Unknown travel'
+      travelTitle: travel ? travel.travelTitle : "Unknown travel",
     };
   });
 });
@@ -88,7 +99,7 @@ const openAddBookingModal = async () => {
 
 const openEditBookingModal = async (booking: Booking) => {
   isEdit.value = true;
-  selectedBooking.value = {...selectedBooking, ...booking};
+  selectedBooking.value = { ...selectedBooking, ...booking };
   isAddEditBookingModalOpen.value = true;
 };
 
@@ -129,6 +140,16 @@ const handleConfirmDeleteBooking = () => {
 onMounted(() => {
   bookingsStore.fetchBookings();
   travelsStore.fetchTravels();
-  
 });
 </script>
+
+<style lang="postcss" scoped>
+.booking-page {
+  &-title {
+    @apply mb-4 text-2xl font-bold lg:text-3xl ml-4;
+  }
+  &-cta {
+    @apply text-white px-6 rounded mr-4 mt-4;
+  }
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white lg:text-3xl ml-5 color-[#ff4758]">Travels</h1>
+  <div class="travel-page">
+    <h1 class="travel-page-title color-[#ff4758]">Travels</h1>
     <Table
       :columns="columns"
       :data="travels"
@@ -9,7 +9,7 @@
     >
       <template #actions>
         <button
-          class="text-white px-6 rounded mr-4 mt-4 bg-[#ff4758]"
+          class="travel-page-cta bg-[#ff4758]"
           title="Add New Travel"
           @click="openAddTravelModal"
         >
@@ -28,7 +28,7 @@
     <ModalConfirm
       :isModalOpen="isConfirmDeleteModalOpen"
       message="Are you sure you want to delete this travel?"
-      description="Deleting this travel you will also delete all the bookings connected to this travel!!!"
+      description="Deleting this travel you will also delete all the bookings related to this travel!!!"
       @close="closeConfirmDeleteModal"
       @confirm="handleConfirmDeleteTravel"
     />
@@ -79,7 +79,7 @@ const openAddTravelModal = () => {
 
 const openEditTravelModal = (travel: Travel) => {
   isEdit.value = true;
-  selectedTravel.value = {...selectedTravel, ...travel }
+  selectedTravel.value = { ...selectedTravel, ...travel };
   isAddEditTravelModalOpen.value = true;
 };
 const closeAddEditTravelModal = () => {
@@ -107,7 +107,7 @@ const closeConfirmDeleteModal = () => {
 const handleConfirmDeleteTravel = () => {
   if (travelToDelete.value !== null) {
     travelsStore.removeTravel(travelToDelete.value);
-    bookingsStore.removeBookingsByTravelId(travelToDelete.value)
+    bookingsStore.removeBookingsByTravelId(travelToDelete.value);
   }
   closeConfirmDeleteModal();
 };
@@ -116,3 +116,14 @@ onMounted(() => {
   travelsStore.fetchTravels();
 });
 </script>
+
+<style lang="postcss" scoped>
+.travel-page {
+  &-title {
+    @apply mb-4 text-2xl font-bold lg:text-3xl ml-4;
+  }
+  &-cta {
+    @apply text-white px-6 rounded mr-4 mt-4;
+  }
+}
+</style>

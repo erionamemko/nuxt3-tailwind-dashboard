@@ -1,14 +1,16 @@
 <template>
   <Modal :isOpen="isModalOpen" @close="closeModal">
     <div class="text-black-600 mb-4">
-      
-      <p><Icon
-            size="30"
-            name="material-symbols:brightness-alert-outline"
-            color="orange"
-          />{{ message }}</p>
+      <p>
+        <Icon
+          size="30"
+          name="material-symbols:brightness-alert-outline"
+          color="orange"
+        />{{ message }}
+      </p>
       <p class="mt-6 font-[bold]" v-if="description">
-        {{ description }}</p>
+        {{ description }}
+      </p>
     </div>
     <div class="flex justify-end">
       <button

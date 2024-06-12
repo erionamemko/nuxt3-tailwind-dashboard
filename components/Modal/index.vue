@@ -26,7 +26,7 @@ const closeModal = () => {
 <style lang="postcss" scoped>
 .modal {
   &-bg {
-    @apply bg-white p-6 rounded shadow-lg w-full max-w-md relative max-h-[680px] overflow-scroll;
+    @apply bg-white p-6 rounded shadow-lg w-full max-w-md relative max-h-[90vh] overflow-y-scroll;
 
     &__close {
       @apply absolute top-0 right-0 m-2 text-gray-600;

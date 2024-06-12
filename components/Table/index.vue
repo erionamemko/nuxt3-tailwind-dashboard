@@ -39,7 +39,7 @@
               :src="row[column.key]"
               @error="handleImageError"
               alt="travel Image"
-              class="table-container-image shadow-[15px_9px_2px_-9px_rgba(0, 0, 0, 0.88)]"
+              class="table-container-image shadow-[15px_9px_2px_-9px_rgba(0,0,0,0.88)]"
             />
             <span v-else-if="column.key === 'price'">
               {{ row[column.key] }} €
@@ -87,7 +87,7 @@
     </button>
     <span>Page {{ currentPage }} of {{ totalPages }}</span>
     <button
-      class="px-4 py-2 bg-gray-200 text-gray-700 rounded disabled:opacity-50"
+      class="table-container__previous-btn"
       title="Next"
       @click="nextPage"
       :disabled="currentPage === totalPages"
@@ -104,7 +104,7 @@ const props = defineProps({
     required: true,
   },
   data: {
-    type: Array as () => any[],
+    type: Array as () => Record<string, string | number>[],
     required: true,
   },
 });
@@ -135,9 +135,14 @@ const sortedData = computed(() => {
 });
 
 const filteredData = computed(() => {
+  const query = searchQuery.value.toLowerCase();
+
+  if (!query) {
+    return sortedData.value;
+  }
   return sortedData.value.filter((item) => {
     return Object.values(item).some((value) =>
-      String(value).toLowerCase().includes(searchQuery.value.toLowerCase())
+      String(value).toLowerCase().includes(query)
     );
   });
 });
@@ -177,6 +182,7 @@ const handleSearch = (query: string) => {
   searchQuery.value = query;
   currentPage.value = 1;
 };
+
 const handleImageError = (event: Event) => {
   (event.target as HTMLImageElement).src = "/svg/places.svg";
 };

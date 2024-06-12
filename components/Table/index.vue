@@ -3,7 +3,7 @@
     <SearchBar @search="handleSearch" />
     <slot name="actions"></slot>
   </div>
-  <div class="table-container margin-x-auto overflow-x-scroll">
+  <div class="table-container margin-x-auto overflow-x-scroll lg:max-w-[calc(100vw_-_145px)] max-w-full">
     <table>
       <thead class="rounded-tl-3xl bg-black text-white">
         <tr>

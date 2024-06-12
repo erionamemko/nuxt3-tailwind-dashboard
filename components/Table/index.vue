@@ -104,7 +104,7 @@ const props = defineProps({
     required: true,
   },
   data: {
-    type: Array as () => Record<string, string | number>[],
+    type: Array as () => Record<string, string >[],
     required: true,
   },
 });
@@ -197,7 +197,7 @@ const handleImageError = (event: Event) => {
   }
 
   &-columns {
-    @apply py-4 px-4 border-b border-gray-200 text-left cursor-pointer lg:min-w-[100px];
+    @apply py-4 px-4 border-b border-gray-200 text-left cursor-pointer w-auto lg:min-w-[100px];
   }
 
   &-actions {

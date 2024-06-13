@@ -3,7 +3,7 @@
     <SearchBar @search="handleSearch" />
     <slot name="actions"></slot>
   </div>
-  <div class="table-container margin-x-auto overflow-x-scroll lg:max-w-[calc(100vw_-_145px)] max-w-full">
+  <div class="table-container margin-x-auto overflow-x-scroll lg:max-w-[calc(100vw_-_145px)]">
     <table>
       <thead class="rounded-tl-3xl bg-black text-white">
         <tr>
@@ -190,7 +190,7 @@ const handleImageError = (event: Event) => {
 
 <style lang="postcss" scoped>
 .table-container {
-  @apply border rounded-lg divide-y divide-gray-200 ml-auto mr-auto;
+  @apply border rounded-lg divide-y divide-gray-200 ml-auto mr-auto max-w-full;
 
   table {
     @apply bg-white border border-gray-200 shadow-md;

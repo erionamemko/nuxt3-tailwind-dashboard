@@ -54,7 +54,7 @@ const toggleSidebar = () => {
     @apply flex relative w-full max-w-md ml-8 lg:-ml-2;
 
     h1 {
-      @apply mb-4 text-xl font-extrabold text-gray-900 dark:text-white md:text-2xl lg:text-3xl;
+      @apply mb-4 text-xl font-extrabold text-gray-900 md:text-2xl lg:text-3xl;
     }
   }
 

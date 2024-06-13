@@ -197,7 +197,7 @@ const handleImageError = (event: Event) => {
   }
 
   &-columns {
-    @apply py-4 px-4 border-b border-gray-200 text-left cursor-pointer w-auto lg:min-w-[100px];
+    @apply py-4 px-4 border-b border-gray-200 text-left cursor-pointer w-[100vh] lg:min-w-[100px];
   }
 
   &-actions {

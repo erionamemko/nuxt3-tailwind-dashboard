@@ -4,7 +4,7 @@
       <button @click="closeModal" class="modal-bg__close" title="Close">
         <Icon class="cursor-pointer text-gray-800" size="20" name="material-symbols:close" />
       </button>
-      <slot></slot>
+      <slot/>
     </div>
   </div>
 </template>

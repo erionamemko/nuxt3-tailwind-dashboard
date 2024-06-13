@@ -3,11 +3,11 @@
     <form class="form-travel" @submit.prevent="submitForm">
       <div class="mb-4">
         <h2 class="text-lg font-bold mb-4">
-        {{ isEdit ? "Edit Travel" : "Add Travel" }}
-      </h2>
-        <label for="travelTitle" class="form-travel-label"
-          >Travel Title</label
-        >
+          {{ isEdit ? "Edit Travel" : "Add Travel" }}
+        </h2>
+        <label for="travelTitle" class="form-travel-label">
+          Travel Title
+        </label>
         <input
           v-model="travelData.travelTitle"
           type="text"
@@ -17,9 +17,9 @@
         />
       </div>
       <div class="mb-4">
-        <label for="price" class="form-travel-label"
-          >Price</label
-        >
+        <label for="price" class="form-travel-label">
+          Price
+        </label>
         <input
           v-model="travelData.price"
           type="number"
@@ -31,9 +31,9 @@
       <div class="mb-4">
         <label
           for="departureDate"
-          class="form-travel-label"
-          >Departure Date</label
-        >
+          class="form-travel-label">
+          Departure Date
+          </label>
         <input
           v-model="travelData.departureDate"
           type="date"
@@ -43,9 +43,9 @@
         />
       </div>
       <div class="mb-4">
-        <label for="returnDate" class="form-travel-label"
-          >Return Date</label
-        >
+        <label for="returnDate" class="form-travel-label">
+          Return Date
+        </label>
         <input
           v-model="travelData.returnDate"
           type="date"
@@ -55,9 +55,9 @@
         />
       </div>
       <div class="mb-4">
-        <label for="userRating" class="form-travel-label"
-          >User Rating</label
-        >
+        <label for="userRating" class="form-travel-label">
+          User Rating
+        </label>
         <input
           v-model="travelData.userRating"
           type="number"
@@ -70,20 +70,19 @@
         />
       </div>
       <div class="mb-4">
-        <label for="description" class="form-travel-label"
-          >Description</label
-        >
+        <label for="description" class="form-travel-label">
+          Description
+        </label>
         <textarea
           v-model="travelData.description"
           id="description"
           class="form-travel-input"
-          required
-        ></textarea>
+          required/>
       </div>
       <div class="mb-4">
-        <label for="location" class="form-travell-label"
-          >Location</label
-        >
+        <label for="location" class="form-travell-label">
+          Location
+        </label>
         <input
           v-model="travelData.location"
           type="text"
@@ -93,9 +92,9 @@
         />
       </div>
       <div class="mb-4">
-        <label for="image" class="form-travel-label"
-          >Image URL</label
-        >
+        <label for="image" class="form-travel-label">
+          Image URL
+        </label>
         <input
           v-model="travelData.imageUrl"
           type="text"

@@ -48,10 +48,7 @@
               {{ row[column.key] }} / 5
             </span>
             <span
-              v-else-if="
-                column.key !== 'departureDate' && column.key !== 'returnDate'
-              "
-            >
+              v-else-if="column.key !== 'departureDate' && column.key !== 'returnDate'">
               {{ row[column.key] }}
             </span>
             <CalendarCard v-else :date="row[column.key]" />
@@ -104,7 +101,7 @@ const props = defineProps({
     required: true,
   },
   data: {
-    type: Array as () => Record<string, string >[],
+    type: Array as () => Record<string, any>[],
     required: true,
   },
 });

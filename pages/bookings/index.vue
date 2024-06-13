@@ -74,14 +74,6 @@ const tableColumnsData = [
 const travels = computed(() => travelsStore.getTravels());
 const bookings = computed(() => bookingsStore.getBookings());
 
-//Todo: send only necessary data on component
-// const travelTitlesAndIds = computed(() =>
-//   travels.value.map((travel) => ({
-//     id: travel.travelId,
-//     travelTitle: travel.travelTitle,
-//   }))
-// );
-
 const filteredBookings = computed(() => {
   return bookings.value.map((booking) => {
     const travel = travels.value.find((t) => t.travelId === booking.travelId);
